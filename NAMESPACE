@@ -1,0 +1,13 @@
+
+useDynLib(kexpmv, .registration = TRUE)
+
+export(crs2mat)
+export(expokit_dgexpv)
+export(expokit_dgpadm)
+export(expokit_dmexpv)
+export(mat2crs)
+importFrom("methods", as, is)
+importFrom("stats", "runif")
+import("SparseM")
+
+
