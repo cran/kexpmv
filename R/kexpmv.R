@@ -707,7 +707,7 @@ expokit_dgexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 			}
 		}
 		
-	# The itrace flag, if set to 1, results in dmexpv printing some details of
+	# The itrace flag, if set to 1, results in dgexpv printing some details of
 	# the function's run to screen.
 	itrace = 0
 	iflag = 0	

@@ -1,7 +1,7 @@
 Package: kexpmv
 Type: Package
 Title: Matrix Exponential using Krylov Subspace Routines
-Version: 0.0.2
+Version: 0.0.3
 Author: Meabh G. McCurdy  <mmccurdy01@qub.ac.uk>
 Maintainer: Meabh G. McCurdy  <mmccurdy01@qub.ac.uk>
 Depends: methods, SparseM, R (>= 3.0.2)
@@ -21,7 +21,7 @@ LazyData: yes
 ByteCompile: true
 NeedsCompilation: yes
 Repository: CRAN
-Packaged: 2018-01-11 11:38:54 UTC; 40061290
+Packaged: 2018-01-11 13:43:05 UTC; 40061290
 Collate: 'kexpmv.R'
 RoxygenNote: 6.0.1
-Date/Publication: 2018-01-11 11:50:32 UTC
+Date/Publication: 2018-01-11 14:19:23 UTC

@@ -1,9 +1,8 @@
-9d39637b1137a770bea35c1be35f1c57 *DESCRIPTION
+b5699bff09658847462a1ee4ab7af805 *DESCRIPTION
 4936c11a79f6c8cc506b79c3727bd31f *NAMESPACE
-ce752f0aa67112ff4b94102bc1da849d *NEWS
-4034fdf6463ae5558488be8cf6e5d9c0 *R/kexpmv.R
+5db0abd842d5c6ce1d665ea9f506bd6a *NEWS
+bebc028d6a95329447cfaf1181285682 *R/kexpmv.R
 c5b3d09e221bf85dde608884c1d5bdd3 *README.md
-c2dbf89aafffe6cc6ee8651366021fb8 *inst/notes/CRAN-comments-11Dec2017.txt
 7b486d29cb6b83af1fdca962cf4ed971 *inst/notes/LAPACK_LICENSE.txt
 c3fa973b0976b94d5fd2a40a94a22957 *inst/notes/expokit_copyright.txt
 d133389a93fbacf62c7951d8c86abb6b *man/crs2mat.Rd
@@ -13,10 +12,10 @@ f97e8fa10329412637b9b9029400b215 *man/expokit_dmexpv.Rd
 c78e3c4919bf4fc5ea457e0a2cef07aa *man/kexpmv-package.Rd
 b00f8624028c0de4a1a471116effd765 *man/mat2crs.Rd
 455417460317ff3d1091612831233da1 *src/Makevars
-48c9d65d62fe021295d8247483b73037 *src/blas_mod.f
+c9cbdb9f50bb98d4a51f5c4ed27aa339 *src/blas_mod.f
 cfae595a251de16e1d6f62f1a4b2f0eb *src/kexmpv_init.c
-232f9a2f681f6bca4863057342d8963f *src/lapack.f
-194c227072610c450b88246c8e31bfdc *src/mataid.f
+56209eb94c588a65b4d94673c100b47d *src/lapack.f
+d6aec336439e411a421d743864721bdc *src/mataid.f
 0c17b8d528101ef8629fb080d88e162a *src/my_expokit.f
 b3e47a928974e76f641850c625ee44bb *src/my_matexp.f
 a85a17357a6cd0612a93231032cf0554 *src/rcpp_module.cpp
