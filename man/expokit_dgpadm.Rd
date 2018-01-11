@@ -2,7 +2,7 @@
 % Please edit documentation in R/kexpmv.R
 \name{expokit_dgpadm}
 \alias{expokit_dgpadm}
-\title{EXPOKIT dgpadm matrix exponentiation on input matrix}
+\title{EXPOKIT dgpadm matrix exponentiation on a square matrix}
 \usage{
 expokit_dgpadm(mat = NULL, t = 15, transpose_needed = TRUE)
 }

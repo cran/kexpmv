@@ -42,7 +42,7 @@ This function converts a matrix to CRS format and exponentiates
 it via the EXPOKIT dmexpv function with the wrapper functions \code{wrapalldmexpv_} 
 and \code{dmexpv_} around dmexpv. This function can be used to calculate both the 
 matrix exponential in isolation or the product of the matrix exponential with a 
-vector. This can be achieved by modifying the vector variable as shown below.\cr
+vector. This can be achieved by modifying the \code{vector} variable as shown below.\cr
 }
 \details{
 From EXPOKIT:\cr

@@ -25,7 +25,7 @@ is performed.}
 need transformed into CRS format. This is required for EXPOKIT's sparse-matrix functions DMEXPV and 
 DGEXPV. Default TRUE; if FALSE, then the \code{mat} argument must be a CRS-formatted matrix.}
 
-\item{crs_n}{If a CRS matrix is input, \code{crs_n} specifies the order (# of rows  or # of columins) of
+\item{crs_n}{If a CRS matrix is input, \code{crs_n} specifies the order (# of rows  or # of columns) of
 the matrix. Default is NULL.}
 
 \item{anorm}{The \code{expokit_dgexpv} routine requires an initial guess at the norm of the matrix. Using the
@@ -42,7 +42,7 @@ This function converts a matrix to CRS format and exponentiates
 it via the EXPOKIT dgexpv function with the wrapper functions \code{wrapalldgexpv_}  
 and \code{dgexpv_} around DGEXPV. This function can be used to calculate both the matrix 
 exponential in isolation or the product of the matrix exponential with a vector. 
-This can be achieved by modifying the vector variable as shown below.\cr
+This can be achieved by modifying the \code{vector} variable as shown below.\cr
 }
 \details{
 NOTE: When looking at DGEXPV vs. DMEXPV. According to the EXPOKIT documentation, the

@@ -27,7 +27,7 @@
  Markov models. Both \code{expokit_dgexpv} and \code{expokit_dmexpv} functions can compute both 
  of these calculations with the use of the \code{vector} arguement.\cr
 
- When the matrix has large dimensions and is sparse in nature, this means that the 
+ When the matrix has large dimensions and is sparse in nature, this means the 
  matrix has a high volume of elements equal to zero. Similiar to EXPOKIT this package
  transforms the matrix into Compressed Row Storage (CRS) format before the
  matrix exponentiation is performed. See functions \code{mat2crs} and \code{crs2mat}
@@ -46,7 +46,9 @@
   under the usual GPL license for CRAN R packages. For the
   full EXPOKIT copyright and license, see
   \code{expokit_copyright.txt} under
-  \code{inst/notes}.}
+  \code{inst/notes}. \cr \cr \bold{3.} The development of this
+  package was helped by advice and discussions with my PhD
+  supervisors Adele Marshall and Karen Cairns.}
  
 \examples{
 library(kexpmv)

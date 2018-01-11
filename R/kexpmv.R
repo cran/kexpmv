@@ -3,7 +3,7 @@
 # EXPOKIT-RELATED FUNCTIONS
 #######################################################
 
-#' EXPOKIT dgpadm matrix exponentiation on input matrix
+#' EXPOKIT dgpadm matrix exponentiation on a square matrix
 #'
 #' This function exponentiates a matrix via the EXPOKIT padm function.
 #'
@@ -116,7 +116,7 @@ expokit_dgpadm <- function(mat=NULL, t=15, transpose_needed=TRUE)
 #' it via the EXPOKIT dmexpv function with the wrapper functions \code{wrapalldmexpv_} 
 #' and \code{dmexpv_} around dmexpv. This function can be used to calculate both the 
 #' matrix exponential in isolation or the product of the matrix exponential with a 
-#' vector. This can be achieved by modifying the vector variable as shown below.\cr
+#' vector. This can be achieved by modifying the \code{vector} variable as shown below.\cr
 #'
 #' From EXPOKIT:\cr
 #' \code{*     The method used is based on Krylov subspace projection}\cr
@@ -254,7 +254,7 @@ expokit_dmexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 	# ideg = degree of polynomial, 6 is usually considered sufficient
 	ideg = as.integer(6)
 	
-	# dimenion of Krylov subspace, m=n-1 or m=30 if n>31
+	# dimension of Krylov subspace, m=n-1 or m=30 if n>31
 	if (n > 31){
 		m=30
 	} else {
@@ -264,17 +264,13 @@ expokit_dmexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 	# v should have as many elements as n; first element = 1 
 	if (is.null(vector))
 		{
-		# Input space-fillers, these get written over by wrapall
 		v=double(n)
 		v[1] = 1
-		# Input the input probabilities, these get used directly by myDMEXPV/myDGEXPV
 		} else {
 		v = double(n)
 		v = vector
-		#print(v)
 		}
 		
-	# w is the same length
 	w = double(length=n)
 	lwsp = as.integer(n*(m+2)+5*(m+2)^2+ideg+1)
 	wsp = double(length=lwsp)
@@ -283,23 +279,6 @@ expokit_dmexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 	
 	#matvec = matrix(data=Q, nrow=n, byrow=TRUE)
 	matvec = matvec
-	
-	# check CRS formatted matrix has no row containing all zero values, if first row does this can be fixed		
-		#if (transform_to_crs==FALSE){
-			#zerorows = double(length=n)
-				#for (i in 1:n){
-				#	if (matvec[[1]][i]==matvec[[1]][i+1]){
-					#	zerorows[i]=1
-					#}
-				#}
-				#if (zerorows[1]==1){
-				#	matvec[[1]][1]=0
-				#}
-	#	for (i in 2:n){
-			#if (zerorows[i]==1){
-			#	print("Matrix has a row of zeros, need to transpose the matrix before inputting into the funtion and set transpose_needed=FALSE")
-			#}
-		#}}
 	
 	# Tranpose the matrix where required
 	if (transform_to_crs == TRUE)
@@ -379,7 +358,6 @@ expokit_dmexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 		# Return the full matrix exponential
 		################################################################
 		
-		# Create the space for res (the returned Pmat)
 		res = double(length=n*n)
 		flag2 = double(length=n+1)
 		flag3 = double(length=n+1)	
@@ -447,7 +425,7 @@ mat2crs <- function(mat)
 	tmpmat_in_SparseMcrs_fmt = as.matrix.csr(mat)
 	tmpcrs = tmpmat_in_SparseMcrs_fmt
   
-  # We just need the 3 columns: 
+    # Need the 3 columns: 
   	# [ia] = row pointer
 	# [ja] = col index for non zero elements
 	# [a] = non zero elements
@@ -499,10 +477,10 @@ crs2mat <- function(mat, n){
 	# Convert crs matrix to square format
 	
 	nrows=length(ia)-1
-	A<-matrix(0,nrows,nrows)                        # create empty matrix which will be the full, transformed matrix
-	for (i in 1:nrows){                             # Calculating by row first
-		for (j in ia[i]:(ia[i+1]-1)){                   # Getting the correct number of nz elements in each row
-			A[i,ja[j]]=a[j]                             # New transformed elements
+	A<-matrix(0,nrows,nrows)                        
+	for (i in 1:nrows){                             
+		for (j in ia[i]:(ia[i+1]-1)){                   
+			A[i,ja[j]]=a[j]                             
 		}
 	}
 	
@@ -532,7 +510,7 @@ return(A)
 #' it via the EXPOKIT dgexpv function with the wrapper functions \code{wrapalldgexpv_}  
 #' and \code{dgexpv_} around DGEXPV. This function can be used to calculate both the matrix 
 #' exponential in isolation or the product of the matrix exponential with a vector. 
-#' This can be achieved by modifying the vector variable as shown below.\cr
+#' This can be achieved by modifying the \code{vector} variable as shown below.\cr
 #'
 #'
 #' NOTE: When looking at DGEXPV vs. DMEXPV. According to the EXPOKIT documentation, the
@@ -571,7 +549,7 @@ return(A)
 #' @param transform_to_crs If the input matrix is in square format then the matrix will
 #' need transformed into CRS format. This is required for EXPOKIT's sparse-matrix functions DMEXPV and 
 #' DGEXPV. Default TRUE; if FALSE, then the \code{mat} argument must be a CRS-formatted matrix.
-#' @param crs_n If a CRS matrix is input, \code{crs_n} specifies the order (# of rows  or # of columins) of
+#' @param crs_n If a CRS matrix is input, \code{crs_n} specifies the order (# of rows  or # of columns) of
 #' the matrix. Default is NULL.
 #' @param anorm The \code{expokit_dgexpv} routine requires an initial guess at the norm of the matrix. Using the
 #' R function \code{\link{norm}} might get slow with large matrices. Default is NULL.
@@ -672,7 +650,7 @@ expokit_dgexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 	# ideg = degree of polynomial, 6 is usually considered sufficient
 	ideg = as.integer(6)
 	
-	# dimenion of Krylov subspace, m=n-1 or m=30 if n>31
+	# dimension of Krylov subspace, m=n-1 or m=30 if n>31
 	if (n > 31){
 		m=30
 	} else {
@@ -682,10 +660,8 @@ expokit_dgexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 	# v should have as many elements as n; first element = 1 (?)
 	if (is.null(vector))
 		{
-		# Input space-fillers, these get written over by wrapall
 		v=double(n)
 		v[1] = 1
-		# Input the input probabilities, these get used directly by myDGEXPV/myDGEXPV
 		} else {
 		v = double(n)
 		v = vector
@@ -699,23 +675,6 @@ expokit_dgexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 	
 	#matvec = matrix(data=Q, nrow=n, byrow=TRUE)
 	matvec = matvec
-	
-	# check CRS formatted matrix has no row containing all zero values, if first row does this can be fixed		
-		#if (transform_to_crs==FALSE){
-			#zerorows = double(length=n)
-			#	for (i in 1:n){
-				#	if (matvec[[1]][i]==matvec[[1]][i+1]){
-				#		zerorows[i]=1
-				#	}
-				#}
-				#if (zerorows[1]==1){
-				#	matvec[[1]][1]=0
-			#	}
-		#for (i in 2:n){
-			#if (zerorows[i]==1){
-			#	print("Matrix has a row of zeros, need to transpose the matrix before inputting into the funtion and set transpose_needed=FALSE")
-			#}
-	#	}}
 	
 	# Tranpose the matrix where required
 	if (transform_to_crs == TRUE)
@@ -774,9 +733,9 @@ expokit_dgexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 		# Run the wrapper function	
 		if (!is.null(vector)) 
 		{
-		###################################################################
-		# Instead of returning the full matrix, just return the output 
-		# probabilities, Krylov subspace is dimension m=n-1
+		####################################################################
+		# Instead of returning the full matrix exponential, just return the 
+		# output probabilities
 		###################################################################
 		
 		# Be sure to input the input probabilities
@@ -792,11 +751,9 @@ expokit_dgexpv <- function(mat=NULL, t=15, vector=NULL, transpose_needed=TRUE, t
 		}} else 
 		{
 		################################################################
-		# Return the full matrix n<32, where the Krylov subspace is 
-		# of dimension m=n-1
+		# Return the full matrix exponential
 		################################################################
-		
-		# Create the space for res (the returned Pmat)
+
 		res = double(length=n*n)
 		flag2 = double(length=n+1)
 		flag3 = double(length=n+1)	
